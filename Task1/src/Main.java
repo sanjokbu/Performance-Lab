@@ -4,13 +4,11 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Scanner scanner = new Scanner(System.in);
+		int n = Integer.parseInt(args[0]);
+		int m = Integer.parseInt(args[1]);
 
-		System.out.println("Введите размер массива:");
-		int n = scanner.nextInt();
-
-		System.out.println("Введите длину обхода:");
-		int m = scanner.nextInt();
+		System.out.println("Размер массива: " + n);
+		System.out.println("Длина обхода: " + m);
 
 		StringBuilder path = new StringBuilder();
 
