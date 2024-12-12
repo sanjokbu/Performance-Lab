@@ -3,7 +3,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
 
@@ -15,11 +14,9 @@ public class Main {
 
 		ArrayList<Integer> numList;
 
-		try (Scanner scanner = new Scanner(System.in);) {
+		try {
 
-			System.out.println("Введите путь к файлу:");
-			Path path = Path.of(scanner.nextLine());
-			List<String> list = Files.readAllLines(path);
+			List<String> list = Files.readAllLines(Path.of(args[0]));
 
 			numList = new ArrayList<>();
 
@@ -37,7 +34,9 @@ public class Main {
 			System.out.println("Минимальное количество ходов: " + countIterator);
 
 		} catch (IOException e) {
+
 			System.out.println("Файл не найден");
+
 		}
 	}
 }
