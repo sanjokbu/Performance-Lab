@@ -15,12 +15,8 @@ public class Main {
 		List<String> list = List.of();
 		List<String> coordinatesList = List.of();
 
-		Scanner scanner = new Scanner(System.in);
-
 		try {
-			System.out.println("Введите путь к файлу с координатами центра и радиусом:");
-			Path path = Path.of(scanner.nextLine());
-			list = Files.readAllLines(path);
+			list = Files.readAllLines(Path.of(args[0]));
 		} catch (IOException e) {
 			System.out.println("Файл с координатами центра и радиусом не найден");
 			System.exit(0);
@@ -33,11 +29,9 @@ public class Main {
 		radius = Double.parseDouble(list.getLast());
 
 		try {
-			System.out.println("Введите путь к координатами точек:");
-			Path path = Path.of(scanner.nextLine());
-			coordinatesList = Files.readAllLines(path);
+			coordinatesList = Files.readAllLines(Path.of(args[1]));
 		} catch (IOException e) {
-			System.out.println("Фаил с координатами точек не найден");
+			System.out.println("Файл с координатами точек не найден");
 			System.exit( 0);
 		}
 
@@ -62,8 +56,6 @@ public class Main {
 			}
 
 		}
-
-		scanner.close();
 
 	}
 }
