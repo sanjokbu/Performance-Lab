@@ -2,7 +2,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,17 +9,13 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Scanner scanner = new Scanner(System.in);
 		String jsonValues = "";
 		StringBuilder jsonReport = null;
 
 		try {
 
-			System.out.println("Введите путь к файлу со структурой отчета:");
-			String jsonTests = Files.readString(Path.of(scanner.nextLine()));
-
-			System.out.println("Введите путь к файлу с результатами тестов:");
-			jsonValues = Files.readString(Path.of(scanner.nextLine()));
+			String jsonTests = Files.readString(Path.of(args[0]));
+			jsonValues = Files.readString(Path.of(args[1]));
 
 			jsonReport = new StringBuilder(jsonTests);
 
@@ -53,10 +48,6 @@ public class Main {
 			idValues.put(jsonValues.substring(matcher1.end(), matcher2.end()), jsonValues.substring(matcher3.end(), matcher4.end()));
 		}
 
-			System.out.println("Полученные id и value:");
-			System.out.println(idValues);
-
-
 		for (String s: idValues.keySet()) {
 
 			regex_value_start = "\"id\":\\s*" + s + ",\\s*\"title\":\\s*\".*\",\\s*\"value\":\\s*\"";
@@ -71,8 +62,7 @@ public class Main {
 
 		try {
 
-			System.out.println("Введите путь куда сохранить файл отчета:");
-			Files.writeString(Path.of(scanner.nextLine()), jsonReport);
+			Files.writeString(Path.of(args[2]), jsonReport);
 
 		} catch (IOException e) {
 
@@ -80,8 +70,5 @@ public class Main {
 			System.exit(0);
 
 		}
-
-		scanner.close();
-
 	}
 }
